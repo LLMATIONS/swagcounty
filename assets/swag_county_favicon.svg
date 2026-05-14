@@ -4,10 +4,6 @@
       <stop offset="0%" style="stop-color:#b44fff;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#00f5d4;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0d0d0d" />
-      <stop offset="100%" style="stop-color:#1a0a2e" />
-    </linearGradient>
     <filter id="glow">
       <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
       <feMerge>
@@ -17,10 +13,7 @@
     </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="64" height="64" fill="url(#bgGrad)" rx="10"/>
-
-  <!-- Diamond icon centered -->
+  <!-- Diamond mark on a transparent background -->
   <g transform="translate(32, 32)" filter="url(#glow)">
     <!-- Outer diamond -->
     <polygon points="0,-20 12,-4 0,13 -12,-4" fill="none" stroke="url(#neonGrad)" stroke-width="1.8"/>
