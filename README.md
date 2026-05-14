@@ -6,8 +6,8 @@ Lives at <https://swagcounty.com>.
 
 ## What's in here
 
-- `index.html` — the workshop landing page (Neal.fun-flavored, single-file, no JS)
-- `assets/` — shared brand assets (currently empty)
+- `index.html` — the workshop landing page (Neal.fun-flavored, no JS, no build step)
+- `assets/` — shared brand assets: `swag_county_logo.svg` (the hero lockup) + `swag_county_favicon.svg` (the diamond mark, used as the page favicon)
 - That's the whole repo. Each delight-lane *project* (e.g. [shuffleify](https://github.com/LLMATIONS/shuffleify)) gets its own repo with its own deploy story.
 
 ## Local preview
