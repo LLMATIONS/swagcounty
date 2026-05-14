@@ -1,0 +1,89 @@
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" font-family="'Arial Black', 'Helvetica Neue', sans-serif">
+  <defs>
+    <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b44fff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f5d4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0d0d" />
+      <stop offset="100%" style="stop-color:#1a0a2e" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bgGrad)" rx="18"/>
+
+  <!-- Subtle grid lines -->
+  <g opacity="0.06" stroke="#b44fff" stroke-width="0.8">
+    <line x1="0" y1="80" x2="600" y2="80"/>
+    <line x1="0" y1="160" x2="600" y2="160"/>
+    <line x1="0" y1="240" x2="600" y2="240"/>
+    <line x1="0" y1="320" x2="600" y2="320"/>
+    <line x1="100" y1="0" x2="100" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="500" y1="0" x2="500" y2="400"/>
+  </g>
+
+  <!-- Icon mark: abstract diamond shape -->
+  <g transform="translate(300, 130)" filter="url(#softglow)">
+    <polygon points="0,-52 30,-10 0,32 -30,-10" fill="none" stroke="url(#neonGrad)" stroke-width="2.5"/>
+    <polygon points="0,-30 18,0 0,22 -18,0" fill="url(#neonGrad)" opacity="0.9"/>
+    <line x1="-52" y1="-10" x2="-34" y2="-10" stroke="#00f5d4" stroke-width="2" opacity="0.7"/>
+    <line x1="34" y1="-10" x2="52" y2="-10" stroke="#00f5d4" stroke-width="2" opacity="0.7"/>
+  </g>
+
+  <!-- SWAG wordmark -->
+  <text
+    x="300" y="222"
+    text-anchor="middle"
+    font-size="68"
+    font-weight="900"
+    letter-spacing="18"
+    fill="url(#neonGrad)"
+    filter="url(#glow)"
+  >SWAG</text>
+
+  <!-- Thin divider line -->
+  <line x1="160" y1="238" x2="440" y2="238" stroke="url(#neonGrad)" stroke-width="1" opacity="0.5"/>
+
+  <!-- COUNTY subtext -->
+  <text
+    x="300" y="270"
+    text-anchor="middle"
+    font-size="20"
+    font-weight="400"
+    letter-spacing="12"
+    fill="#ffffff"
+    opacity="0.85"
+  >COUNTY</text>
+
+  <!-- Dot accents flanking COUNTY -->
+  <circle cx="152" cy="265" r="3" fill="#b44fff" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="448" cy="265" r="3" fill="#00f5d4" opacity="0.7" filter="url(#glow)"/>
+
+  <!-- Bottom tagline -->
+  <text
+    x="300" y="310"
+    text-anchor="middle"
+    font-size="10"
+    letter-spacing="5"
+    fill="#b44fff"
+    opacity="0.5"
+  >EST. MMXXVI</text>
+</svg>
