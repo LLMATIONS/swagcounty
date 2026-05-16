@@ -6,7 +6,7 @@ Lives at <https://swagcounty.com>.
 
 ## What's in here
 
-- `index.html`: the workshop landing page. Fun-flavored, no JS, no build step.
+- `index.html`: the workshop landing page. Fun-flavored, vanilla JS, no build step.
 - `assets/`: the hero logo and diamond favicon.
 - Each delight-lane project (e.g. [shuffleify](https://github.com/LLMATIONS/shuffleify)) gets its own repo.
 
