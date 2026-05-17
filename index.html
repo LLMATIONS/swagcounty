@@ -61,12 +61,15 @@ main {
   margin: 0 auto 0.75rem;
 }
 .tagline {
-  color: var(--fg);
   font-size: 1.4rem;
   font-weight: 700;
   text-align: center;
   letter-spacing: 0.01em;
-  text-shadow: 0 0 16px rgba(180, 79, 255, 0.30);
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 16px rgba(180, 79, 255, 0.30));
   margin: 0 0 2rem;
 }
 .projects {
@@ -99,10 +102,21 @@ main {
   align-items: center;
   gap: 0.6rem;
 }
+.card-icon {
+  width: 1.6em;
+  height: 1.6em;
+  flex-shrink: 0;
+  border-radius: 6px;
+  display: block;
+}
 .card .desc {
-  color: var(--dim);
+  color: var(--fg);
   margin: 0;
   font-size: 0.95rem;
+}
+.card .desc strong {
+  color: #e888c0;
+  font-weight: 700;
 }
 .badge {
   font-size: 0.62rem;
@@ -113,6 +127,11 @@ main {
   border-radius: 999px;
   color: var(--bg-near-black);
   background: linear-gradient(135deg, var(--neon-purple), var(--neon-teal));
+}
+.card .badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.85rem;
 }
 .empty-slot {
   border: 1px dashed var(--card-border);
@@ -149,8 +168,9 @@ footer a:hover { color: var(--neon-teal); }
 
 <div class="projects">
   <a class="card" href="/shuffleify">
-    <p class="name">shuffleify <span class="badge">In development</span></p>
-    <p class="desc">Spotify shuffle sucks &mdash; everybody knows it. See what a real shuffle looks like.</p>
+    <span class="badge">In development</span>
+    <p class="name"><img class="card-icon" src="/assets/shuffleify_logo.png" alt="">shuffleify</p>
+    <p class="desc"><strong>Spotify's shuffle sucks &mdash; everybody knows it.</strong><br>Ready for a real shuffle?</p>
   </a>
   <div class="empty-slot">More soon.</div>
 </div>
