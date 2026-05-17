@@ -128,6 +128,11 @@ main {
   color: var(--bg-near-black);
   background: linear-gradient(135deg, var(--neon-purple), var(--neon-teal));
 }
+.card .badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.85rem;
+}
 .empty-slot {
   border: 1px dashed var(--card-border);
   border-radius: 10px;
@@ -163,7 +168,8 @@ footer a:hover { color: var(--neon-teal); }
 
 <div class="projects">
   <a class="card" href="/shuffleify">
-    <p class="name"><img class="card-icon" src="/assets/shuffleify_logo.png" alt="">shuffleify <span class="badge">In development</span></p>
+    <span class="badge">In development</span>
+    <p class="name"><img class="card-icon" src="/assets/shuffleify_logo.png" alt="">shuffleify</p>
     <p class="desc"><strong>Spotify's shuffle sucks &mdash; everybody knows it.</strong><br>Ready for a real shuffle?</p>
   </a>
   <div class="empty-slot">More soon.</div>
