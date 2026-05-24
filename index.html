@@ -20,6 +20,7 @@
 <meta name="twitter:image" content="https://swagcounty.com/assets/og-card.png?v=2026-05-17">
 <style>
 :root {
+  color-scheme: dark;
   --bg-near-black: #0d0d0d;
   --bg-deep-purple: #1a0a2e;
   --fg: #f0ecf7;
@@ -28,6 +29,17 @@
   --neon-teal: #00f5d4;
   --card-bg: rgba(255, 255, 255, 0.025);
   --card-border: rgba(180, 79, 255, 0.18);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -179,13 +191,14 @@ footer a:hover { color: var(--neon-teal); }
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
 <main>
-<img class="logo" src="/assets/swag_county_logo.svg" alt="Swag County">
+<h1 class="visually-hidden">Swag County</h1>
+<img class="logo" src="/assets/swag_county_logo.svg" alt="Swag County" width="332" height="264">
 <p class="tagline">Building cool shit for the love of the game</p>
 
 <div class="projects">
   <a class="card" href="/shuffleify">
     <span class="badge">In development</span>
-    <p class="name"><img class="card-icon" src="/assets/shuffleify_logo.png" alt="">shuffleify</p>
+    <p class="name"><img class="card-icon" src="/assets/shuffleify_logo.png" alt="" width="32" height="32">shuffleify</p>
     <p class="desc"><strong>Spotify's shuffle sucks &mdash; everybody knows it.</strong><br>Ready for a real shuffle?</p>
   </a>
   <div class="empty-slot">More soon.</div>
