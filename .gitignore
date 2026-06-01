@@ -150,3 +150,7 @@ Thumbs.db
 *~
 .idea/
 .vscode/
+
+# Claude Code operator-local files (agent-side, not shared)
+.claude/
+CLAUDE.md
