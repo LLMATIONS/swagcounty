@@ -155,6 +155,10 @@ main {
   background-clip: text;
   color: transparent;
 }
+/* debrief wears its own teal, the accent of the debrief site itself. */
+.card--debrief .desc strong {
+  color: #2dd4bf;
+}
 .badge {
   font-size: 0.62rem;
   text-transform: uppercase;
@@ -207,8 +211,15 @@ footer a:hover { color: var(--neon-teal); }
 <p class="tagline">Building cool shit for the love of the game</p>
 
 <div class="projects">
-  <a class="card card--hype" href="https://hype.swagcounty.com">
+  <a class="card card--debrief" href="https://debrief.swagcounty.com">
     <span class="badge">New</span>
+    <img class="card-icon" src="/assets/debrief-emblem.svg?v=2026-09-25" alt="">
+    <div class="card-body">
+      <p class="name">debrief</p>
+      <p class="desc"><strong>deadlock match coach</strong>: reads the replay data and tells you what to work on next</p>
+    </div>
+  </a>
+  <a class="card card--hype" href="https://hype.swagcounty.com">
     <img class="card-icon" src="/assets/hype-emblem.svg?v=2026-06-24" alt="">
     <div class="card-body">
       <p class="name">&lt;hype&gt;</p>
