@@ -80,6 +80,12 @@
   // shipped tuning (the "normal" preset): chill star speed, normal frequency + density
   const mode = { gapMin: 850, gapMax: 2300, starDiv: 12000, spdMin: 2.5, spdMax: 5 };
   let nextSpawn = 0;
+  // Shooter speeds are tuned in px per 60 Hz frame. Scale each step by the
+  // real frame time so a 144 Hz or 240 Hz display moves stars at the same
+  // on-screen speed instead of 2.4x-4x faster. Clamped so a long stall (tab
+  // in the background, a GC pause) doesn't teleport every star off-screen.
+  const FRAME_MS = 1000 / 60;
+  let lastFrame = 0;
 
   function resize() {
     W = canvas.width = innerWidth;
@@ -148,6 +154,8 @@
     });
   }
   function step(now) {
+    const k = lastFrame ? Math.min(now - lastFrame, 100) / FRAME_MS : 1;
+    lastFrame = now;
     ctx.clearRect(0, 0, W, H);
 
     // static field — stars breathe (slow fade in/out then respawn) + light up near the pointer
@@ -188,10 +196,17 @@
       }
       for (let i = shooters.length - 1; i >= 0; i--) {
         const sh = shooters[i];
-        sh.trail.push({ x: snap(sh.x), y: snap(sh.y) });
-        if (sh.trail.length > sh.maxTrail) sh.trail.shift();
-        sh.x += sh.vx;
-        sh.y += sh.vy;
+        // the head moves every frame (smooth on fast displays), but the trail
+        // takes one sample per 60 Hz-equivalent tick, so the streak keeps the
+        // same length at any refresh rate
+        sh.acc = (sh.acc || 0) + k;
+        if (sh.acc >= 1) {
+          sh.acc %= 1;
+          sh.trail.push({ x: snap(sh.x), y: snap(sh.y) });
+          if (sh.trail.length > sh.maxTrail) sh.trail.shift();
+        }
+        sh.x += sh.vx * k;
+        sh.y += sh.vy * k;
 
         for (let t = 0; t < sh.trail.length; t++) {
           const f = t / sh.trail.length;            // 0 oldest -> 1 newest
