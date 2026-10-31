@@ -66,6 +66,9 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  /* the canvas is sized in CSS pixels; on a HiDPI screen the browser upscales
+     it, and smoothing would blur the pixel-art sprites into soft blobs */
+  image-rendering: pixelated;
 }
 main {
   position: relative;
