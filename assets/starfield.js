@@ -91,7 +91,7 @@
     W = canvas.width = innerWidth;
     H = canvas.height = innerHeight;
     ctx.imageSmoothingEnabled = false;
-    buildStaticStars();
+    fitStaticStars();
   }
   // (re)roll a static star in place: new spot, shape, brightness, and lifespan
   function respawnStar(s, now) {
@@ -112,16 +112,20 @@
     s.life = rand(8000, 20000);   // ms a star lives before it fades out + respawns
     s.born = now;
   }
-  function buildStaticStars() {
+  // Fit the field to the viewport. A resize (a phone's address bar sliding
+  // away, a window drag) keeps every star that still lands on screen and only
+  // tops up or trims to the new density, so the sky doesn't re-roll under you.
+  function fitStaticStars() {
     const n = Math.min(320, Math.round((W * H) / mode.starDiv));
     const t = performance.now();
-    staticStars = [];
-    for (let i = 0; i < n; i++) {
+    staticStars = staticStars.filter(s => s.x <= W && s.y <= H);
+    while (staticStars.length < n) {
       const s = {};
       respawnStar(s, t);
       s.born = t - rand(0, s.life);   // stagger initial ages so they don't all breathe in sync
       staticStars.push(s);
     }
+    staticStars.length = n;
   }
   function spawnShooter() {
     const dir = Math.random() < 0.5 ? -1 : 1;        // travel left or right
@@ -154,8 +158,18 @@
     });
   }
   function step(now) {
-    const k = lastFrame ? Math.min(now - lastFrame, 100) / FRAME_MS : 1;
+    const gap = lastFrame ? now - lastFrame : 0;
+    const k = lastFrame ? Math.min(gap, 100) / FRAME_MS : 1;
     lastFrame = now;
+    // A background tab gets no frames. Without this, every star outlives its
+    // lifespan while hidden and they all respawn on the same frame: the sky
+    // blanks, fades back in unison, and breathes in lockstep from then on.
+    // Push each star's clock forward by the time the page was paused.
+    if (gap > 100) {
+      const paused = gap - 100;
+      for (const s of staticStars) s.born += paused;
+      nextSpawn += paused;
+    }
     ctx.clearRect(0, 0, W, H);
 
     // static field — stars breathe (slow fade in/out then respawn) + light up near the pointer
