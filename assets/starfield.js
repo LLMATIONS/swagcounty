@@ -246,8 +246,14 @@
     lastSpawnX = e.clientX; lastSpawnY = e.clientY;
     spawnShooterAt(e.clientX, e.clientY);
   });
-  addEventListener('pointerup', () => { dragging = false; });
-  addEventListener('pointercancel', () => { dragging = false; });
+  // a finger has no hover: once it lifts, drop the glow instead of leaving it
+  // stuck where the last tap landed
+  const release = e => {
+    dragging = false;
+    if (e.pointerType !== 'mouse') mx = my = -1;
+  };
+  addEventListener('pointerup', release);
+  addEventListener('pointercancel', release);
   // kill native image/link drag so a hold-drag never shows the "no-drop" cursor
   addEventListener('dragstart', e => e.preventDefault());
 
