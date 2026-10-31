@@ -242,6 +242,9 @@
   });
   document.addEventListener('mouseleave', () => { mx = my = -1; });
   addEventListener('pointerdown', e => {
+    // the footer is selectable text: a drag there selects the email address,
+    // so it shouldn't also spray stars across it
+    if (e.target instanceof Element && e.target.closest('footer')) return;
     dragging = true;
     lastSpawnX = e.clientX; lastSpawnY = e.clientY;
     spawnShooterAt(e.clientX, e.clientY);
